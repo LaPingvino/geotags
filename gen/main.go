@@ -77,6 +77,7 @@ func main() {
 		ps = append(ps, p)
 	}
 	sort.Slice(ps, func(i, j int) bool { return ps[i].Population > ps[j].Population })
+	ps = dropSections(ps)
 	// Curated aliases go to the most populous place with that tag.
 	var extra map[string][]string
 	if b, err := os.ReadFile(*aliasFile); err == nil {
@@ -172,6 +173,35 @@ func cell(lat, lon float64) string {
 		lon -= float64(lo) * res
 	}
 	return b.String()
+}
+
+// dropSections removes districts listed as cities of their own ("Paris 17
+// Batignolles-Monceau", "Berlin-Mitte"): a place whose tag starts with the
+// tag of a bigger place in the same country whose radius covers it.
+func dropSections(ps []*place) []*place {
+	var out []*place
+	for _, p := range ps {
+		section := false
+		for _, big := range out {
+			if big.Country == p.Country && len(big.Tag) >= 4 && len(p.Tag) > len(big.Tag) &&
+				strings.HasPrefix(p.Tag, big.Tag) && distKm(big.Lat, big.Lon, p.Lat, p.Lon) <= big.Km {
+				section = true
+				break
+			}
+		}
+		if !section {
+			out = append(out, p)
+		}
+	}
+	return out
+}
+
+func distKm(lat1, lon1, lat2, lon2 float64) float64 {
+	const R = 6371.0
+	rad := math.Pi / 180
+	dLat, dLon := (lat2-lat1)*rad, (lon2-lon1)*rad
+	a := math.Sin(dLat/2)*math.Sin(dLat/2) + math.Cos(lat1*rad)*math.Cos(lat2*rad)*math.Sin(dLon/2)*math.Sin(dLon/2)
+	return 2 * R * math.Asin(math.Sqrt(a))
 }
 
 func contains(xs []string, s string) bool {
