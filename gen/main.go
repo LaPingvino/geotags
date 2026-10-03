@@ -58,7 +58,9 @@ func main() {
 			continue
 		}
 		pop, _ := strconv.Atoi(c[14])
-		if pop < *min {
+		// Skip sections of a city (Paris' arrondissements, São Paulo's
+		// districts): people tag the city, not the section.
+		if pop < *min || c[7] == "PPLX" {
 			continue
 		}
 		lat, _ := strconv.ParseFloat(c[4], 64)
