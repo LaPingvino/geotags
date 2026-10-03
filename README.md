@@ -19,6 +19,8 @@ network, without anyone sharing coordinates. Neighbouring cells: offset the cent
   `name`, `country`, `population`, `lat`, `lon`, `km` (radius estimated from population), `cell`
   (the centre's `#geo` cell), and `ambiguous` when a tag names more than one place or is very short.
   To find the place tags for a cell, take every place whose centre is within `km` of the cell's centre.
+- **`noisy.json`** — tags that are also common words or famous elsewhere (`#paris`, `#nice`, `#reading`),
+  always flagged ambiguous.
 - **`aliases.json`** — curated extra hashtags (`lisbon` → `lisboa`, `lx`; `mexicocity` → `cdmx`).
 - **`languages.json`** — language hashtags (`#esperanto`, `#tokipona`, `#learnjapanese`, `#languageexchange`…)
   → ISO 639-3 `codes` (empty for "any language") and a `weight` for how specific the tag is.
@@ -34,5 +36,5 @@ go run ./gen -in cities15000.txt -min 100000 > places.json
 
 - Data in `places.json` is derived from [GeoNames](https://www.geonames.org/) and licensed under
   [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). Please credit GeoNames.
-- `aliases.json`, `languages.json` and the code: CC0 / public domain. Contributions welcome — especially
+- `aliases.json`, `noisy.json`, `languages.json` and the code: CC0 / public domain. Contributions welcome — especially
   hashtags people really use in your city or language community.

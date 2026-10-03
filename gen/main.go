@@ -41,6 +41,7 @@ func main() {
 	in := flag.String("in", "cities15000.txt", "GeoNames dump (tab-separated)")
 	min := flag.Int("min", 100000, "minimum population")
 	aliasFile := flag.String("aliases", "aliases.json", "curated extra hashtags per tag")
+	noisyFile := flag.String("noisy", "noisy.json", "tags that are also common words or famous elsewhere")
 	flag.Parse()
 	f, err := os.Open(*in)
 	if err != nil {
@@ -98,8 +99,16 @@ func main() {
 			count[a]++
 		}
 	}
+	noisy := map[string]bool{}
+	if b, err := os.ReadFile(*noisyFile); err == nil {
+		var ns []string
+		json.Unmarshal(b, &ns)
+		for _, n := range ns {
+			noisy[n] = true
+		}
+	}
 	for _, p := range ps {
-		p.Ambiguous = count[p.Tag] > 1 || len(p.Tag) <= 3
+		p.Ambiguous = count[p.Tag] > 1 || len(p.Tag) <= 3 || noisy[p.Tag]
 	}
 	enc := json.NewEncoder(os.Stdout)
 	enc.SetEscapeHTML(false)
