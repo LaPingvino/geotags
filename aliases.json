@@ -1,0 +1,119 @@
+{
+ "lisbon": [
+  "lisboa",
+  "lx",
+  "lisbonne",
+  "lissabon"
+ ],
+ "amsterdam": [
+  "ams",
+  "mokum"
+ ],
+ "denhaag": [
+  "thehague",
+  "hague"
+ ],
+ "brussels": [
+  "bruxelles",
+  "brussel"
+ ],
+ "antwerpen": [
+  "antwerp"
+ ],
+ "london": [
+  "ldn"
+ ],
+ "copenhagen": [
+  "kobenhavn",
+  "københavn",
+  "cph"
+ ],
+ "munich": [
+  "muenchen",
+  "münchen"
+ ],
+ "cologne": [
+  "koeln",
+  "köln"
+ ],
+ "vienna": [
+  "wien"
+ ],
+ "zurich": [
+  "zürich",
+  "zuerich"
+ ],
+ "geneva": [
+  "geneve",
+  "genève",
+  "genf"
+ ],
+ "warsaw": [
+  "warszawa"
+ ],
+ "krakow": [
+  "kraków"
+ ],
+ "prague": [
+  "praha",
+  "prag"
+ ],
+ "barcelona": [
+  "bcn"
+ ],
+ "rome": [
+  "roma"
+ ],
+ "milan": [
+  "milano"
+ ],
+ "athens": [
+  "athina"
+ ],
+ "kyiv": [
+  "kiev"
+ ],
+ "newyorkcity": [
+  "newyork",
+  "nyc"
+ ],
+ "sanfrancisco": [
+  "sf"
+ ],
+ "losangeles": [
+  "la"
+ ],
+ "mexicocity": [
+  "cdmx"
+ ],
+ "saopaulo": [
+  "sampa"
+ ],
+ "riodejaneiro": [
+  "rio"
+ ],
+ "brasilia": [
+  "brasília"
+ ],
+ "porto": [
+  "oporto"
+ ],
+ "thehague": [
+  "denhaag"
+ ],
+ "rotterdam": [
+  "rdam"
+ ],
+ "berlin": [
+  "bln"
+ ],
+ "hamburg": [
+  "hh"
+ ],
+ "madrid": [
+  "mad"
+ ],
+ "paris": [
+  "pariz"
+ ]
+}
