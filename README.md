@@ -19,6 +19,8 @@ network, without anyone sharing coordinates. Neighbouring cells: offset the cent
   `name`, `country`, `population`, `lat`, `lon`, `km` (radius estimated from population), `cell`
   (the centre's `#geo` cell), and `ambiguous` when a tag names more than one place or is very short.
   To find the place tags for a cell, take every place whose centre is within `km` of the cell's centre.
+- **`towns.json`** — every place of 15,000+ people (`[name, country, lat, lon]`, ~32k), for finding a town by
+  name. Not a hashtag list: small-town names are too often ordinary words to use as place tags.
 - **`noisy.json`** — tags that are also common words or famous elsewhere (`#paris`, `#nice`, `#reading`),
   always flagged ambiguous.
 - **`aliases.json`** — curated extra hashtags (`lisbon` → `lisboa`, `lx`; `mexicocity` → `cdmx`).
@@ -30,6 +32,7 @@ network, without anyone sharing coordinates. Neighbouring cells: offset the cent
 ```bash
 curl -LO https://download.geonames.org/export/dump/cities15000.zip && unzip cities15000.zip
 go run ./gen -in cities15000.txt -min 100000 > places.json
+go run ./towns -in cities15000.txt > towns.json
 ```
 
 ## License
